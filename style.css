@@ -6,3 +6,22 @@ html, body {
 canvas {
   display: block;
 }
+#color-invert-btn{
+  padding: 10px 20px;
+  background-color: #565e67;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Jersey 10', sans-serif;
+  font-size: 40px;
+
+  /* position of the button */
+  position: absolute;
+  top: 600px;
+  left: 300px;
+}
+#color-invert-btn:hover{
+  background-color: #282e36;
+  color: rgb(235, 224, 224);
+}
+
