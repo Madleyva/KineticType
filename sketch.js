@@ -1,45 +1,48 @@
-let font, points=[];
-let r=10;
+let font, points = [];
+let r = 4;
 let angle = 0;
+let inverted = false;
 
-
-/*
-let color_picker = document.getElementById("color-picker-wrapper");
-let color_picker_wrapper = document.getElementById("color-picker-wrapper");
-
-color_picker.onchange = function(){
-  color_picker_wrapper.style.backgroundColor = 
-  color_picker.value;
-};*/
-document.getElementById("color-picker").addEventListener("change")
-
-function preload(){
+function preload() {
   font = loadFont("Jersey_10/Jersey10-Regular.ttf");
 }
-      
+
 function setup() {
   noCursor();
   frameRate(9);
   createCanvas(800, 400);
-  points = font.textToPoints("Maddy", 100, 200, 200, 300);
+  points = font.textToPoints("Maddy", 50, 250, 300, 400);
+  angleMode(DEGREES);
+
+  // Add event listener to the color invert button
+  const colorInvertBtn = document.getElementById("color-invert-btn");
+  colorInvertBtn.addEventListener("click", toggleInvert);
 }
 
-
 function draw() {
-  background('black');
-  
-  //color change animation
-  let hue = map(sin(angle * 0.1), -1, 1, 0, 255);
-  fill(hue, 255, 255);
+  background(inverted ? 255 : 25); // Invert background color if 'inverted' flag is true
 
+  for (let i = 0; i < points.length; i++) {
+    // Calculate hue based on position in the loop
+    let hue = map(i, 0, points.length, 0, 255);
+    // Set color mode to HSB
+    colorMode(HSB, 255);
+    fill(inverted ? 255 - hue : hue, 255, 255); // Invert fill color if 'inverted' flag is true
 
-  for(let i = 0; i < points.length; i++){ // this allows you to use the points you created and draw out the word you typed in the setup function with them
+    // Modify the size of each rectangle dynamically
     let size = map(sin(angle * 0.05), -1, 1, 5, 15);
-    rect(points[i].x + r * sin(angle + i*25),
-    points[i].y, 3,3);
+
+    // Draw the rainbow-colored text
+    rect(points[i].x + r * sin(angle + i * 5), points[i].y, 3, 6);
   }
-  angle +=6;
-  //mouse cursor
+
+  angle += 9;
+
+  // Draw the mouse cursor
   fill('white');
-  ellipse(mouseX, mouseY, 20 ,20);
+  ellipse(mouseX, mouseY, 20, 20);
+}
+
+function toggleInvert() {
+  inverted = !inverted; // Toggle the 'inverted' flag
 }
