@@ -25,3 +25,22 @@ canvas {
   color: rgb(235, 224, 224);
 }
 
+#Tutorial{
+  text-align: center;
+  font-family: 'Jersey10', sans-serif;
+  font-size: 14px;
+
+  position: absolute;
+  top: auto 0;
+  left: 400px;
+  transform: translateX(-50%);
+}
+
+#Tutorial h3{
+  margin: 10px 0;
+}
+
+#heading1 {
+  font-weight: bold;
+  font-size: 20px;
+}
